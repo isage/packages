@@ -1,0 +1,13 @@
+diff --git a/cmake/Findwebp.cmake b/cmake/Findwebp.cmake
+index 23982dd..8d1ef06 100644
+--- a/cmake/Findwebp.cmake
++++ b/cmake/Findwebp.cmake
+@@ -10,7 +10,7 @@ find_path(webp_INCLUDE_PATH
+ 
+ set(webp_COMPILE_OPTIONS "" CACHE STRING "Extra compile options of webp")
+ 
+-set(webp_LINK_LIBRARIES "" CACHE STRING "Extra link libraries of webp")
++set(webp_LINK_LIBRARIES "pthread" CACHE STRING "Extra link libraries of webp")
+ 
+ set(webp_LINK_FLAGS "" CACHE STRING "Extra link flags of webp")
+ 

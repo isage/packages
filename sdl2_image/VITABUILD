@@ -5,10 +5,12 @@ url="https://www.libsdl.org/projects/SDL_image/"
 source=(
     "https://github.com/libsdl-org/SDL_image/releases/download/release-${pkgver}/SDL2_image-${pkgver}.tar.gz"
     pkgconfig_install.patch
+    require_pthread.patch
 )
 sha256sums=(
     48355fb4d8d00bac639cd1c4f4a7661c4afef2c212af60b340e06b7059814777
     e25aaab687be470a6a7306d338d08bb6954b84ec1f233ffa1a9087853820666e
+    7b22d2cbafec28db9f5266f4f07ea2b5c750f3374ed122df088cc836fc6467b0
 )
 
 depends=('sdl2 libpng libwebp libjpeg-turbo zlib')
@@ -16,6 +18,7 @@ depends=('sdl2 libpng libwebp libjpeg-turbo zlib')
 prepare() {
   cd "SDL2_image-${pkgver}"
   patch --strip=1 --input="${srcdir}/pkgconfig_install.patch"
+  patch --strip=1 --input="${srcdir}/require_pthread.patch"
 }
 
 build() {
