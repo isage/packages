@@ -1,24 +1,29 @@
 pkgname=sdl2_net
-pkgver=2.0.1
+pkgver=2.2.0
 pkgrel=1
 url="https://github.com/libsdl-org/SDL_net/"
 gitrev=6e513e390d18ad7950d9082863bfe33a0c62fd71
-source=("https://github.com/libsdl-org/SDL_net/archive/${gitrev}.tar.gz" "vita.patch")
-sha256sums=('SKIP' 'SKIP')
+source=("https://github.com/libsdl-org/SDL_net/releases/download/release-${pkgver}/SDL2_net-${pkgver}.tar.gz" "vita.patch")
+sha256sums=('4e4a891988316271974ff4e9585ed1ef729a123d22c08bd473129179dc857feb' '7065b962eccc8bc14bf7a429c54a15e49c94f86f176505d99709cc4c7197b9ca')
 depends=('sdl2')
 
 prepare() {
-  cd "SDL_net-${gitrev}"
+  cd "SDL2_net-${pkgver}"
   patch -Np1 -i "${srcdir}/vita.patch"
 }
 
 build() {
-  cd "SDL_net-${gitrev}"
-  ./configure --host=arm-vita-eabi --prefix=$prefix --disable-shared --enable-static --without-pic
+  cd "SDL2_net-${pkgver}"
+  mkdir build && cd build
+  cmake .. -DCMAKE_TOOLCHAIN_FILE=$VITASDK/share/vita.toolchain.cmake -DCMAKE_BUILD_TYPE=Release \
+           -DBUILD_SHARED_LIBS=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=OFF \
+           -DSDL2NET_SAMPLES=OFF \
+           -DCMAKE_INSTALL_PREFIX=$prefix
+
   make -j$(nproc)
 }
 
 package () {
-  cd "SDL_net-${gitrev}"
+  cd "SDL2_net-${pkgver}/build"
   make DESTDIR=$pkgdir install
 }
