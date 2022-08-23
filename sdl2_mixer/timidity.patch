@@ -1,0 +1,15 @@
+diff --git a/src/codecs/music_timidity.c b/src/codecs/music_timidity.c
+index 5822c4b..989d8d5 100644
+--- a/src/codecs/music_timidity.c
++++ b/src/codecs/music_timidity.c
+@@ -50,6 +50,10 @@ static void TIMIDITY_Delete(void *context);
+ #elif defined(__OS2__)
+ # define TIMIDITY_CFG           "C:\\TIMIDITY\\TIMIDITY.CFG"
+ # define TIMIDITY_CFG_ETC       "/@unixroot/etc/timidity/timidity.cfg"
++#elif defined(__vita__)
++# define TIMIDITY_CFG           "ux0:/data/timidity/timidity.cfg"
++# define TIMIDITY_CFG_ETC       "app0:/data/timidity/timidity.cfg"
++# define TIMIDITY_CFG_FREEPATS  "ux0:/data/timidity/freepats.cfg"
+ #else  /* unix: */
+ # define TIMIDITY_CFG_ETC       "/etc/timidity.cfg"
+ # define TIMIDITY_CFG_FREEPATS  "/etc/timidity/freepats.cfg"
