@@ -1,0 +1,20 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9abeefb..ece6af4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -694,7 +694,6 @@ if(SDL2IMAGE_INSTALL)
+         COMPONENT devel
+     )
+ 
+-    if(SDL2IMAGE_BUILD_SHARED_LIBS)
+         # Only create a .pc file for a shared SDL2_image
+         set(prefix "${CMAKE_INSTALL_PREFIX}")
+         set(exec_prefix "\${prefix}")
+@@ -724,7 +723,6 @@ if(SDL2IMAGE_INSTALL)
+             file(INSTALL DESTINATION \"\${CMAKE_INSTALL_PREFIX}/${PC_DESTDIR}\"
+                 TYPE FILE
+                 FILES \"${CMAKE_CURRENT_BINARY_DIR}/SDL2_image.pc\")" CONFIG Release COMPONENT devel)
+-    endif()
+ 
+     if(SDL2IMAGE_BUILD_SHARED_LIBS AND (APPLE OR (UNIX AND NOT ANDROID)))
+         install(
