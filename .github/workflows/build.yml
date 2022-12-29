@@ -134,3 +134,7 @@ jobs:
           file_glob: true
           tag: ${{ github.ref }}
           release_name: master
+      - name: post upload check
+        run: |
+          curl -v -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${TOKEN}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/rate_limit
+          curl -v -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/rate_limit
